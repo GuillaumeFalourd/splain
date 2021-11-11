@@ -188,18 +188,9 @@ allprojects {
 
 subprojects {
 
-    // https://stackoverflow.com/a/66352905/1772342
-
-    val signingKeyId = providers.gradleProperty("signing.gnupg.keyId")
-    val signingKeyPassphrase = providers.gradleProperty("signing.gnupg.passphrase")
     signing {
         useGpgCmd()
-        if (signingKeyId.isPresent && signingKeyPassphrase.isPresent) {
-            useInMemoryPgpKeys(signingKeyId.get(), signingKeyPassphrase.get())
-            sign(extensions.getByType<PublishingExtension>().publications)
-        } else {
-            logger.info("PGP signing key not defined, skipping signing configuration")
-        }
+        sign(configurations.archives.get())
     }
 
     publishing {
