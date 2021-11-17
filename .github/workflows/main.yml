@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, workflow_dispatch]
 
 env:
   fullySupportedScalaVersions: "2.13.6"
