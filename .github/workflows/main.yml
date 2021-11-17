@@ -3,7 +3,7 @@ name: CI
 on: [push, workflow_dispatch]
 
 env:
-  fullySupportedScalaVersions: "2.13.6"
+  FULLY_SUPPORTED_SCALA_VERSIONS: "2.13.6"
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         scalaVersion: ["2.13.6", "2.13.7"]
-    continue-on-error: contains($fullySupportedScalaVersions, ${{ matrix.scalaVersion }})
+    continue-on-error: contains($FULLY_SUPPORTED_SCALA_VERSIONS, ${{ matrix.scalaVersion }})
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
